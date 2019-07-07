@@ -31,7 +31,7 @@ Southwest Airlines,182400,8,10,5,0,2,57,0,0,0,332,19,4086
 "Volkswagen of America, Inc",175000,1,2,0,0,0,11,1,0,0,88,0,140
 SciQuest Inc,174000,0,0,0,0,0,1,0,0,0,15,0,0
 Paychex,172000,5,4,1,0,0,21,0,1,0,153,4,516
-Early Warning®,170000,0,2,0,0,0,2,0,0,0,19,0,3
+Early WarningÂ®,170000,0,2,0,0,0,2,0,0,0,19,0,3
 Citrix,168000,11,18,2,0,2,122,0,0,0,386,18,3193
 "Cardinal Health, Inc.",162000,5,14,3,1,0,37,0,0,0,426,6,1677
 Lowe's Companies,162000,5,3,3,0,0,26,0,0,0,86,7,1300
@@ -264,7 +264,7 @@ Room & Board,25000,0,0,0,0,0,1,1,0,0,3,0,0
 Wawanesa Insurance,25000,1,2,2,1,0,5,0,0,0,46,1,407
 Cognizant Technology Solutions,24975,118,117,73,7,33,344,0,0,0,566,158,37398
 e.solutions GmbH,24716,3,0,2,1,0,5,0,0,0,12,4,902
-AXA Konzern AG,24586,4,1,1,0,0,7,0,0,0,15,4,748
+AXAÂ Konzern AG,24586,4,1,1,0,0,7,0,0,0,15,4,748
 Kohler Co.,24550,0,3,0,0,0,5,0,0,0,35,0,80
 "Matson, Inc.",24500,1,0,0,0,0,23,0,0,0,48,1,44
 Swedbank AB,24072,1,1,2,0,0,5,0,0,0,62,3,1413
@@ -358,7 +358,7 @@ Envision Healthcare Corporation,18000,0,0,0,0,0,1,0,0,0,14,0,-50
 HOOPP,18000,3,5,2,1,1,10,0,0,0,63,2,-268
 "Intelligrated, Inc.",18000,0,1,1,0,0,3,0,0,0,52,1,155
 Thales S.A.,18000,3,7,6,0,1,34,0,0,0,207,9,2311
-PSI AG Aktiengesellschaft für Produkte und Systeme der Informationstechnologie,17897,0,0,0,0,0,1,0,0,0,5,0,21
+PSI AG Aktiengesellschaft fÃ¼r Produkte und Systeme der Informationstechnologie,17897,0,0,0,0,0,1,0,0,0,5,0,21
 ALES srl,17439,0,0,0,0,0,0,1,0,0,1,0,-50
 Bnl,17267,0,0,0,0,0,1,1,0,0,2,0,-41
 Carrefour,17267,2,3,4,0,2,9,0,0,1,10,7,1430
@@ -397,7 +397,7 @@ Terex Corporation,12500,1,0,1,0,1,2,0,0,0,96,1,249
 Segugio.it (Gruppo Mutui On Line),12173,0,0,0,0,0,1,1,0,0,1,1,153
 Immoweb,12141,0,0,0,0,0,0,0,0,0,2,0,-14
 Royal Dutch Shell NL,12141,0,0,0,0,0,0,0,0,0,1,0,-50
-Bundesanstalt für Finanzdienstleistungsaufsicht,12087,0,0,0,0,0,0,0,0,0,1,1,120
+Bundesanstalt fÃ¼r Finanzdienstleistungsaufsicht,12087,0,0,0,0,0,0,0,0,0,1,1,120
 hybris GmbH,12087,0,2,0,0,0,3,0,0,0,31,1,163
 Kisters AG,12087,0,0,0,0,0,1,0,0,0,2,0,-50
 Axel Springer Ideas Engineering GmbH,12036,0,0,0,0,0,0,0,0,0,2,0,-50
@@ -471,7 +471,7 @@ Calculo,10000,1,0,0,0,0,2,1,0,0,2,2,330
 Danske IT and Support Services India Pvt Ltd,10000,0,1,0,0,0,2,1,0,0,2,1,200
 Dogus Planet,10000,0,0,0,0,0,1,0,0,0,1,1,150
 Gemeente Amsterdam,10000,0,0,0,0,0,3,0,0,0,4,0,60
-Informática Ayuntamiento de Madrid,10000,0,0,0,0,0,2,1,0,0,3,2,312
+InformÃ¡tica Ayuntamiento de Madrid,10000,0,0,0,0,0,2,1,0,0,3,2,312
 Jelly Button Games,10000,0,0,1,0,1,1,1,0,0,1,1,100
 JetBrains,10000,0,3,1,0,0,4,0,0,0,8,3,410
 Johannesburg Stock Exchange,10000,1,6,1,0,0,7,1,0,0,7,2,386
