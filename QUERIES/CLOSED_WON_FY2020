@@ -1,0 +1,90 @@
+SELECT
+[Opportunity ID] as OppId,
+[Opportunity Name] as OppName,
+[Opportunity Owner] as OppOwner,
+IsActive, 
+ManagerName,
+a.Type as OppType,
+b.Name as AccountName,
+[ARR-equivalent (converted)] as ARR,
+[Upsell ARR (converted)] as UpsellARR, 
+Closed,
+Won,
+[ES_APP__ESEmployees__c] as Employees,
+[ES_APP__ESRevenue__c] as Revenue, 
+[ES_APP__ESIndustry__c] as Industry,
+[DealBand],
+TransId as TimesMoved,
+[ReasonForLostOpp],
+LAST_STAGE.OldValue as Stage_Before_Closed,
+DATEDIFF(day,a.[Created Date], a.[Close Date]) as Age,
+KeyPlayers,
+ORIG_AMT.OldValue as OrigAmt,
+UP_ORIG_AMT.U_ARR as OrigUpsellAmt,
+(CAST([Upsell ARR (converted)] as float)-UP_ORIG_AMT.U_ARR) as UP_DIFF,
+(CAST([ARR-equivalent (converted)] as float)-ORIG_AMT.OldValue) as ARR_DIFF
+FROM SFAX.dbo.Opps as a
+LEFT JOIN SFDC_REP.dbo.Accts as b on a.[Account ID]  = b.Id
+LEFT JOIN SFDC_REP.dbo.Users as c on a.[Opportunity Owner] = c.Name
+LEFT JOIN SFDC_REP.dbo.OrigOppAmt as d on a.[Opportunity Owner] = d.OpportunityId
+LEFT JOIN
+
+(
+SELECT
+OpportunityId,
+COUNT(DISTINCT(ContactId)) as KeyPlayers
+FROM SFDC_REP.dbo.OppTeam
+GROUP BY OpportunityId
+) as KP on a.[Opportunity ID] = KP.OpportunityId
+
+
+LEFT JOIN
+
+(
+SELECT
+OpportunityId,
+COUNT(DISTINCT(Id)) as TransId
+FROM SFDC_REP.dbo.OppFieldHist
+WHERE Field = 'CloseDate'
+GROUP BY OpportunityId
+
+) as w on a.[Opportunity ID] = w.OpportunityId
+
+LEFT JOIN 
+(
+SELECT DISTINCT
+a.OpportunityId,
+a.CreatedDate,
+Field, 
+OldValue,
+NewValue,
+ROW_NUMBER()OVER(PARTITION BY a.OpportunityId ORDER BY a.CreatedDate DESC) as Rn
+FROM SFDC_REP.dbo.OppFieldHist as a 
+LEFT JOIN SFDC_REP.dbo.Opps as b on a.OpportunityId = b.Id
+WHERE Field = 'StageName' and b.IsWon = 0 AND b.IsClosed = 1 AND b.CloseDate LIKE '%2019%' AND
+NewValue LIKE '%Closed Lost%' AND OldValue NOT LIKE '%Closed Lost%' 
+) as LAST_STAGE on a.[Opportunity ID] = LAST_STAGE.[OpportunityId] AND LAST_STAGE.Rn = 1
+
+LEFT JOIN (
+SELECT 
+OpportunityId,
+CreatedDate,
+OldValue,
+ROW_NUMBER()OVER(PARTITION BY OpportunityId ORDER BY CreatedDate ASC) as Rn
+FROM SFDC_REP.dbo.OppFieldHist
+WHERE 
+OldValue IS NOT NULL AND 
+Field LIKE '%Amount%') as ORIG_AMT on a.[Opportunity ID] = ORIG_AMT.OpportunityId AND ORIG_AMT.Rn = 1
+
+LEFT JOIN (
+SELECT 
+OpportunityId,
+CreatedDate,
+CAST(OldValue as float)*12 as U_ARR,
+ROW_NUMBER()OVER(PARTITION BY OpportunityId ORDER BY CreatedDate ASC) as Rn
+FROM SFDC_REP.dbo.OppFieldHist
+WHERE 
+OldValue IS NOT NULL AND 
+Field LIKE '%Upsell_MRR_hist__c%') as UP_ORIG_AMT on a.[Opportunity ID] = UP_ORIG_AMT.OpportunityId AND UP_ORIG_AMT.Rn = 1
+
+WHERE Closed = 1 AND Won = 1 AND CloseQuarter LIKE '2020%' AND ReasonForLostOpp NOT IN ('Merged with another opportunity','Created By Accident') AND a.type != 'Renewal Business'
